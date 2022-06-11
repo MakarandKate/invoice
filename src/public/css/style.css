@@ -1,0 +1,40 @@
+#invoice-holder{
+    background: #ccc;
+    width: 100%;
+    min-height: 700px;
+    height: 100%;
+    position: absolute;
+    overflow-y: scroll;
+    padding: 20px 0;
+}
+
+#invoice-canvas{
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    position: absolute;
+    right: 15px;
+    top: 55px;
+    margin: 10px;
+}
+#invoice-canvas.activeMatrix{
+    background-image:
+      repeating-linear-gradient(#ccc 0 1px, transparent 1px 100%),
+      repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%);
+    background-size: 71px 71px;
+}
+
+#mydiv {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    text-align: center;
+    border: 1px solid #d3d3d3;
+  }
+  
+  #mydivheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+  }

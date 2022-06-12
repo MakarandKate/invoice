@@ -23,14 +23,30 @@ const hbs = expressHbs.create({
     layoutsDir: path.join(__dirname, 'views/layouts'),
     extname: '.hbs',
 });
+expressApp.use(express.json({limit:'50mb'}));
+expressApp.use(express.urlencoded({extended:true}));
 
 expressApp.set('views', path.join(__dirname, 'views'));
 expressApp.engine('.hbs', hbs.engine);
 expressApp.set('view engine', '.hbs');
 
 expressApp.get('/',(req,res)=>{
-    res.render("./index");
+    let docConfig:any='{}';
+    try{
+        docConfig=fs.readFileSync('./docConfig.json');
+    }catch(err){
+
+    };
+    res.render("./index",{docConfig});
 });
+
+expressApp.post('/saveJSON',(req,res)=>{
+    let doc=req.body;
+    fs.writeFileSync('./docConfig.json',JSON.stringify(doc,null, "\t"));
+    return {
+        satus:"success"
+    }
+})
 
 expressApp.use(
     express.static(

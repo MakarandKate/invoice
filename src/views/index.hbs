@@ -6,19 +6,32 @@
 <script src="./app.js?v={{fileMTime '/app.js'}}"></script>
 </head>
 <body>
+    <input type="hidden" id="inp-docConfig" value='{{docConfig}}'/>
     <div id="invoice-holder">
+        <button onclick="save()">Save</button>
+        <button onclick="edit()">Edit</button>
         <div id="invoice-canvas" class="activeMatrix">
             
-            <div id="mydiv">
-  <div id="mydivheader">Click here to move</div>
-  <h1>Hello</h1>
-</div>
         </div>
     </div>
 
 </body>
 <script>
     let invoice=Invoice;
-    invoice.editLayout("#invoice-holder");
+    let docConfig=document.getElementById("inp-docConfig").value;
+    invoice.editLayout("#invoice-holder",JSON.parse(docConfig));
+    function save(){
+        let doc=invoice.save();
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/saveJSON");
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify(doc));
+        document.getElementById("invoice-holder").classList.remove("editMode");
+
+    }
+    function edit(){
+        document.getElementById("invoice-holder").classList.add("editMode");
+    }
+    edit();
 </script>
 </html>

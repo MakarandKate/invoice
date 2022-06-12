@@ -1,6 +1,11 @@
+*{
+  padding:0;
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif
+}
 #invoice-holder{
     background: #ccc;
-    width: 100%;
+    width: 755px;
     min-height: 700px;
     height: 100%;
     position: absolute;
@@ -16,25 +21,62 @@
     top: 55px;
     margin: 10px;
 }
-#invoice-canvas.activeMatrix{
+#invoice-holder.editMode #invoice-canvas{
     background-image:
-      repeating-linear-gradient(#ccc 0 1px, transparent 1px 100%),
-      repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%);
-    background-size: 71px 71px;
+    repeating-linear-gradient(#ddd 0 1px, transparent 1px 100%),
+    repeating-linear-gradient(90deg, #ddd 0 1px, transparent 1px 100%),
+    repeating-linear-gradient(#aaa 0 1px, transparent 1px 50%),
+    repeating-linear-gradient(90deg, #aaa 0 1px, transparent 1px 50%);
+    background-size: 50px 50px;
 }
 
-#mydiv {
+.div-dragable {
     position: absolute;
     z-index: 9;
-    background-color: #f1f1f1;
     text-align: center;
-    border: 1px solid #d3d3d3;
-  }
-  
-  #mydivheader {
-    padding: 10px;
-    cursor: move;
+    padding:0 20px;
+}
+
+#invoice-holder.editMode .div-dragable{
+  border: 1px solid #d3d3d3;
+}
+
+#invoice-holder.editMode .div-dragable:hover {
+    background:#ccc;
+}
+.div-move {
+  visibility:hidden;
+  cursor: move;
     z-index: 10;
+    border-radius:100px;
     background-color: #2196F3;
     color: #fff;
-  }
+    width:20px;
+    height:20px;
+    position:absolute;
+    top:-10px;
+    left:-10px;
+} 
+
+.div-options-holder {
+  visibility:hidden;
+    z-index: 10;
+    border-radius:100px;
+    position:absolute;
+    top:-10px;
+    left:15px;
+} 
+#invoice-holder.editMode .div-move {
+  visibility:visible;
+    
+}
+#invoice-holder.editMode .div-options-holder {
+  visibility:visible;
+    
+}
+
+
+
+.div-dragable h1{
+    z-index:12;
+}
